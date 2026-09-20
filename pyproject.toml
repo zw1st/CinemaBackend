@@ -1,0 +1,31 @@
+[project]
+name = "cinemabackend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.141.1",
+    "ruff>=0.16.8",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle — базовые проблемы стиля Python
+    "F",    # Pyflakes — реальные ошибки вроде unused imports
+    "I",    # isort — порядок импортов
+    "B",    # flake8-bugbear — потенциально проблемные конструкции
+    "UP",   # pyupgrade — современный синтаксис Python
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
