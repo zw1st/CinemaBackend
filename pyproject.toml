@@ -11,8 +11,13 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "commitizen>=4.18.1",
+    "pre-commit>=4.6.2",
     "pytest>=9.1.1",
 ]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
 
 [tool.ruff]
 line-length = 88
