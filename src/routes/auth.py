@@ -30,9 +30,7 @@ def register(
     data: RegisterRequest,
     session: SessionDep,
 ) -> AuthResponse:
-    existing_user = session.scalar(
-        select(User).where(User.email == data.email)
-    )
+    existing_user = session.scalar(select(User).where(User.email == data.email))
 
     if existing_user is not None:
         raise HTTPException(
@@ -51,9 +49,7 @@ def register(
         session.flush()
 
         access_token = create_access_token(user.id)
-        raw_refresh_token, refresh_token_model = create_refresh_token(
-            user.id
-        )
+        raw_refresh_token, refresh_token_model = create_refresh_token(user.id)
 
         session.add(refresh_token_model)
         session.commit()
@@ -78,9 +74,7 @@ def login(
     data: LoginRequest,
     session: SessionDep,
 ) -> AuthResponse:
-    user = session.scalar(
-        select(User).where(User.email == data.email)
-    )
+    user = session.scalar(select(User).where(User.email == data.email))
 
     if user is None or not verify_password(
         data.password,
@@ -92,9 +86,7 @@ def login(
         )
 
     access_token = create_access_token(user.id)
-    raw_refresh_token, refresh_token_model = create_refresh_token(
-        user.id
-    )
+    raw_refresh_token, refresh_token_model = create_refresh_token(user.id)
 
     session.add(refresh_token_model)
     session.commit()

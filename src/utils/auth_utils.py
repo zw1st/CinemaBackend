@@ -22,9 +22,7 @@ def verify_password(password: str, hashed_password: str) -> bool:
 
 
 def create_access_token(user_id: int) -> str:
-    expire = datetime.now(UTC) + timedelta(
-        minutes=settings.access_token_expire_minutes
-    )
+    expire = datetime.now(UTC) + timedelta(minutes=settings.access_token_expire_minutes)
 
     payload = {
         "sub": str(user_id),
@@ -68,9 +66,7 @@ def create_refresh_token(user_id: int) -> tuple[str, RefreshToken]:
     refresh_token_model = RefreshToken(
         user_id=user_id,
         token_hash=hash_refresh_token(raw_token),
-        expires_at=now + timedelta(
-            days=settings.refresh_token_expire_days
-        ),
+        expires_at=now + timedelta(days=settings.refresh_token_expire_days),
         revoked=False,
         created_at=now,
     )
