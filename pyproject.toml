@@ -3,10 +3,17 @@ name = "cinemabackend"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
     "fastapi[standard]>=0.141.1",
     "ruff>=0.16.8",
+    "sqlalchemy (>=2.1.1,<3.0.0)",
+    "jwt (>=1.4.0,<2.0.0)",
+    "pwdlib[argon2] (>=0.3.1,<0.4.0)",
+    "pyjwt (>=2.15.1,<3.0.0)",
+    "psycopg[binary] (>=3.3.6,<4.0.0)",
+    "python-dotenv (>=1.2.4,<2.0.0)",
+    "psycopg2 (>=2.9.13,<3.0.0)",
 ]
 
 [dependency-groups]
@@ -15,6 +22,7 @@ dev = [
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
     "radon>=6.0.1",
+    "alembic (>=1.20.1,<2.0.0)",
 ]
 
 [tool.commitizen]
