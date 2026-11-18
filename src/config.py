@@ -1,5 +1,7 @@
+import os
 from functools import lru_cache
 
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -13,6 +15,12 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+
 @lru_cache
 def get_settings() -> Settings:
-    return Settings()
+    return Settings(secret_key=SECRET_KEY, database_url=DATABASE_URL)
